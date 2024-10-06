@@ -1,3 +1,25 @@
-:host {
-  @apply tw-block tw-h-full;
+app-music-data {
+  @apply tw-flex tw-flex-1 tw-min-h-0 tw-min-w-0;
+
+  .music-data {
+    @apply tw-flex tw-flex-1 tw-min-h-0 tw-min-w-0;
+
+    &-loader {
+      @apply tw-absolute tw-top-1/2 tw-left-1/2 tw-transform -tw-translate-x-1/2 -tw-translate-y-1/2;
+
+      &-spinner {
+        @apply tw-flex tw-justify-center;
+      }
+
+      &-text {
+        @apply tw-text-lg;
+      }
+    }
+
+    p-table,
+    p-table .p-datatable,
+    p-table .p-datatable .p-datatable-wrapper {
+      @apply tw-flex tw-flex-col tw-flex-1 tw-min-h-0 tw-min-w-0;
+    }
+  }
 }

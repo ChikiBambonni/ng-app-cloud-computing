@@ -1,7 +1,7 @@
 .layout {
-  @apply tw-h-full tw-p-4;
+  @apply tw-h-screen tw-flex tw-p-4;
 
   .worksheet {
-    @apply tw-h-full tw-bg-white tw-shadow-md;
+    @apply tw-flex tw-flex-1 tw-min-h-0 tw-min-w-0 tw-bg-white tw-shadow-md;
   }
 }

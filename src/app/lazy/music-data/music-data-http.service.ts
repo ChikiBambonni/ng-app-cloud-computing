@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, delay, map } from 'rxjs/operators';
 
 import { environment } from '@environment';
 import { BaseHttpApi } from '@core/abstractions';
@@ -23,7 +23,8 @@ export class MusicDataHttpService extends BaseHttpApi {
         map((res: MusicItem[]) => this.getSuccessBody(res)),
         catchError((error: HttpErrorResponse) =>
           of(this.getErrorBody<MusicItem[]>(error))
-        )
+        ),
+        delay(1000)
       );
   }
 }

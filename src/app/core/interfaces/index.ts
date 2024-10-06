@@ -1,1 +1,1 @@
-export * from './music.interfaces';
+export * from './http.interfaces';

@@ -1,4 +1,4 @@
-export interface IBackendHttpError {
+export interface BackendHttpError {
   error: string;
   message: string;
   path: string;
@@ -6,18 +6,18 @@ export interface IBackendHttpError {
   timestamp: string | number;
 }
 
-export interface IErrorResponse {
+export interface ErrorResponse {
   errorCode: number;
   errorMessage: string;
-  body?: IBackendHttpError;
+  body: BackendHttpError | null;
 }
 
-export interface IComponentResponse<T> {
-  error: IErrorResponse | null;
+export interface ComponentResponse<T> {
+  error: ErrorResponse | null;
   value: T | null;
 }
 
-export interface IRequestParams {
+export interface RequestParams {
   queryParams: { [key: string]: string };
   params: { [key: string]: string };
 }

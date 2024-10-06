@@ -1,8 +1,7 @@
 import { Observable } from 'rxjs';
-import { MusicItem } from '../interfaces';
+
+import { ComponentResponse } from '@core/interfaces';
 
 export abstract class Repository<T> {
-  abstract fetchAll(): void;
+  abstract getAll(refetch: boolean): Observable<ComponentResponse<T[]>>;
 }
-
-export abstract class MusicDataRepository extends Repository<MusicItem> {}

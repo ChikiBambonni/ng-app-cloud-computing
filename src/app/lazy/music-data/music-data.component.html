@@ -1,7 +1,8 @@
-<p-table
+<!-- <p-table
   #dt1
   styleClass="p-datatable-gridlines"
-  [value]="musicItems"
+  [tableStyle]="{ height: '100%' }"
+  [value]="musicItems$ | async"
   [paginator]="true"
   [rows]="5"
   [rowsPerPageOptions]="[5, 10, 20]"
@@ -60,4 +61,4 @@
       <td>{{ product.releaseDate }}</td>
     </tr>
   </ng-template>
-</p-table>
+</p-table> -->

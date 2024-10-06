@@ -18,5 +18,10 @@ html {
 }
 
 body {
-  @apply tw-bg-slate-100;
+  @apply tw-bg-slate-200;
+}
+
+html,
+body {
+  @apply tw-h-full;
 }

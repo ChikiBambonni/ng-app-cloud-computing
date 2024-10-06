@@ -1,3 +1,7 @@
-.worksheet {
-  @apply tw-m-4 tw-bg-white tw-shadow-md;
+.layout {
+  @apply tw-h-full tw-p-4;
+
+  .worksheet {
+    @apply tw-h-full tw-bg-white tw-shadow-md;
+  }
 }

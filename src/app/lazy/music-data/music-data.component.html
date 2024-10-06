@@ -1,0 +1,63 @@
+<p-table
+  #dt1
+  styleClass="p-datatable-gridlines"
+  [value]="musicItems"
+  [paginator]="true"
+  [rows]="5"
+  [rowsPerPageOptions]="[5, 10, 20]"
+  [globalFilterFields]="['id', 'band', 'album', 'releaseDate']"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <p-button
+        label="Clear"
+        [outlined]="true"
+        icon="pi pi-filter-slash"
+        (onClick)="clear(dt1)"
+      />
+      <span class="p-input-icon-left ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          [(ngModel)]="searchValue"
+          (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+          placeholder="Search keyword"
+        />
+      </span>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="id">
+        Id
+        <p-sortIcon field="id" />
+        <p-columnFilter type="text" field="id" display="menu" />
+      </th>
+      <th pSortableColumn="band">
+        Band
+        <p-sortIcon field="band" />
+        <p-columnFilter type="text" field="band" display="menu" />
+      </th>
+      <th pSortableColumn="album">
+        Album
+        <p-sortIcon field="album" />
+        <p-columnFilter type="text" field="album" display="menu" />
+      </th>
+      <th pSortableColumn="releaseDate">
+        Release Date
+        <p-sortIcon field="releaseDate" />
+        <p-columnFilter type="date" field="releaseDate" display="menu" />
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.band }}</td>
+      <td>{{ product.album }}</td>
+      <td>{{ product.releaseDate }}</td>
+    </tr>
+  </ng-template>
+</p-table>

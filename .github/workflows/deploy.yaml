@@ -5,17 +5,26 @@ on:
       - main
 
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+  cache_checkout:
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v3
+    - uses: actions/upload-artifact@v3
+      with:
+        name: checkout-${{ github.run_id }}
+        path: ${{ github.workspace }}/**/*
+    - uses: actions/setup-node@v3
         with:
           node-version: 20
 
+  install:
+    needs: cache_checkout
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Cached Checkout
+        uses: actions/download-artifact@v3
+        with:
+          name: checkout-${{ github.run_id }}
       - name: Install Dependencies
         run: npm install
 
@@ -23,6 +32,10 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     steps:
+      - name: Get Cached Checkout
+        uses: actions/download-artifact@v3
+        with:
+          name: checkout-${{ github.run_id }}
       - name: lint
         run: npm run lint
 
@@ -30,6 +43,10 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     steps:
+      - name: Get Cached Checkout
+        uses: actions/download-artifact@v3
+        with:
+          name: checkout-${{ github.run_id }}
       - name: test
         run: npm run test
 
@@ -37,6 +54,10 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     steps:
+      - name: Get Cached Checkout
+        uses: actions/download-artifact@v3
+        with:
+          name: checkout-${{ github.run_id }}
       - name: build
         run: npm run build
 

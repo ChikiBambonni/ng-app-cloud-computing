@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-
 jobs:
   cache_checkout:
     runs-on: ubuntu-latest
@@ -16,7 +15,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-
   install:
     needs: cache_checkout
     runs-on: ubuntu-latest
@@ -30,7 +28,6 @@ jobs:
           key: node-modules-cache
       - name: Install dependencies
         run: npm install
-
   lint:
     needs: install
     runs-on: ubuntu-latest
@@ -44,7 +41,6 @@ jobs:
           key: node-modules-cache
       - name: lint
         run: npm run lint
-
   test:
     needs: install
     runs-on: ubuntu-latest
@@ -58,7 +54,6 @@ jobs:
           key: node-modules-cache
       - name: test
         run: npm run test
-
   build:
     needs: install
     runs-on: ubuntu-latest
@@ -72,7 +67,6 @@ jobs:
           key: node-modules-cache
       - name: build
         run: npm run build
-
   deploy:
     needs: [lint, test, build]
     runs-on: ubuntu-latest

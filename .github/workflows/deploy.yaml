@@ -36,6 +36,8 @@ jobs:
         with:
           path: node_modules
           key: node-modules-cache
+      - name: Install dependencies
+        run: npm install
       - name: lint
         run: npm run lint
   test:
@@ -49,8 +51,10 @@ jobs:
         with:
           path: node_modules
           key: node-modules-cache
+      - name: Install dependencies
+        run: npm install
       - name: test
-        run: npm run build
+        run: npm run test
   build:
     needs: install
     runs-on: ubuntu-latest

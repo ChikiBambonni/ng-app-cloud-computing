@@ -18,6 +18,6 @@ export interface ComponentResponse<T> {
 }
 
 export interface RequestParams {
-  queryParams: { [key: string]: string };
-  params: { [key: string]: string };
+  queryParams: Record<string, string>;
+  params: Record<string, string>;
 }

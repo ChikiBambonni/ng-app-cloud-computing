@@ -12,7 +12,7 @@ export abstract class MusicDataRepository extends Repository<MusicItem> {}
 export class MusicDataHttpRepository extends MusicDataRepository {
   private readonly http = inject(MusicDataHttpService);
 
-  override getAll(refetch = false): Observable<ComponentResponse<MusicItem[]>> {
+  override getAll(): Observable<ComponentResponse<MusicItem[]>> {
     return this.http.getAll();
   }
 }

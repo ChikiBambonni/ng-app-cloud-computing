@@ -6,9 +6,7 @@ import {
 } from '@core/interfaces';
 
 export abstract class BaseHttpUtils {
-  protected getRequestParams(params: {
-    [keys: string]: string | null;
-  }): HttpParams {
+  protected getRequestParams(params: Record<string, string | null>): HttpParams {
     let requestParams: HttpParams = new HttpParams();
 
     if (params) {

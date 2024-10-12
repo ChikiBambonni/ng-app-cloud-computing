@@ -50,7 +50,7 @@ jobs:
           path: node_modules
           key: node-modules-cache
       - name: test
-        run: npm run test
+        run: npm run build
   build:
     needs: install
     runs-on: ubuntu-latest

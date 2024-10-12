@@ -20,13 +20,28 @@ jobs:
   install:
     needs: cache_checkout
     runs-on: ubuntu-latest
+    outputs:
+      node_modules_cache: ${{ steps.cache.outputs.cache-hit }}
     steps:
       - name: Get Cached Checkout
         uses: actions/download-artifact@v3
         with:
           name: checkout-${{ github.run_id }}
-      - name: Install Dependencies
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            node-modules-
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
+      - name: Upload node_modules as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: node_modules
+          path: node_modules
 
   lint:
     needs: install
@@ -36,6 +51,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: checkout-${{ github.run_id }}
+      - name: Download node_modules artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: node_modules
+          path: .
       - name: lint
         run: npm run lint
 
@@ -47,6 +67,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: checkout-${{ github.run_id }}
+      - name: Download node_modules artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: node_modules
+          path: .
       - name: test
         run: npm run test
 
@@ -58,6 +83,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: checkout-${{ github.run_id }}
+      - name: Download node_modules artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: node_modules
+          path: .
       - name: build
         run: npm run build
 

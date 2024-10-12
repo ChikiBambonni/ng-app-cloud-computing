@@ -58,19 +58,6 @@ jobs:
           key: node-modules-cache
       - name: test
         run: npm run test
-  build:
-    needs: install
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v3
-        with:
-          name: checkout-${{ github.run_id }}
-      - uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: node-modules-cache
-      - name: build
-        run: npm run build
   deploy:
     needs: [lint, test, build]
     runs-on: ubuntu-latest

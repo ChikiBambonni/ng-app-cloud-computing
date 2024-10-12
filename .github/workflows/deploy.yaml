@@ -59,7 +59,7 @@ jobs:
       - name: test
         run: npm run test
   deploy:
-    needs: [lint, test, build]
+    needs: [lint, test]
     runs-on: ubuntu-latest
     steps:
       - name: Configure AWS credentials

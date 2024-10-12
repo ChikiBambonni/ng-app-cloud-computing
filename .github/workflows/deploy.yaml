@@ -7,9 +7,6 @@ jobs:
   cache_checkout:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
       - uses: actions/checkout@v3
       - uses: actions/upload-artifact@v3
         with:
@@ -19,9 +16,6 @@ jobs:
     needs: cache_checkout
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
       - uses: actions/download-artifact@v3
         with:
           name: checkout-${{ github.run_id }}
@@ -35,9 +29,6 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
       - uses: actions/download-artifact@v3
         with:
           name: checkout-${{ github.run_id }}
@@ -51,9 +42,6 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
       - uses: actions/download-artifact@v3
         with:
           name: checkout-${{ github.run_id }}
@@ -67,9 +55,6 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
       - uses: actions/download-artifact@v3
         with:
           name: checkout-${{ github.run_id }}

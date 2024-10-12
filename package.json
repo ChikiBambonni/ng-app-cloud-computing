@@ -6,8 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "node_modules/jest/bin/jest.js",
+    "test:watch": "node_modules/jest/bin/jest.js --watch",
     "lint": "ng lint",
     "lint-fix": "ng lint --fix"
   },

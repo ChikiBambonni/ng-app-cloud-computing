@@ -14,8 +14,8 @@ jobs:
         name: checkout-${{ github.run_id }}
         path: ${{ github.workspace }}/**/*
     - uses: actions/setup-node@v3
-        with:
-          node-version: 20
+      with:
+        node-version: 20
 
   install:
     needs: cache_checkout

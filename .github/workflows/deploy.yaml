@@ -1,10 +1,11 @@
-name: Deploy ng app
+name: deploy
 on:
   push:
     branches:
       - main
+
 jobs:
-  deploy:
+  install:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -18,9 +19,31 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build app
+  lint:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - name: lint
+        run: npm run lint
+
+  test:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: npm run test
+
+  build:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - name: build
         run: npm run build
 
+  deploy:
+    needs: [lint, test, build]
+    runs-on: ubuntu-latest
+    steps:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:

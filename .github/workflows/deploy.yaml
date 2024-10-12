@@ -55,8 +55,8 @@ jobs:
         run: npm install
       - name: test
         run: npm run test
-  build:
-    needs: install
+  deploy:
+    needs: [lint, test, build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
@@ -68,10 +68,7 @@ jobs:
           key: node-modules-cache
       - name: build
         run: npm run build
-  deploy:
-    needs: [lint, test, build]
-    runs-on: ubuntu-latest
-    steps:
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:

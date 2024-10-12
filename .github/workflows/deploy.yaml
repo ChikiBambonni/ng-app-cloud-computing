@@ -18,6 +18,9 @@ jobs:
       cache-hit: ${{ steps.cache-deps.outputs.cache-hit }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: checkout-${{ github.run_id }}
       - name: Cache npm dependencies
         id: cache-deps
         uses: actions/cache@v3

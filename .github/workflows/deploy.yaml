@@ -55,12 +55,13 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: checkout-${{ github.run_id }}
-      - uses: actions/cache@v3
+      - name: Restore npm cache
+        uses: actions/cache@v3
         with:
           path: node_modules
-          key: node-modules-cache
-      - name: Install dependencies
-        run: npm install
+          key: npm-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-cache-${{ runner.os }}-
       - name: test
         run: npm run test
   deploy:
@@ -70,10 +71,13 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: checkout-${{ github.run_id }}
-      - uses: actions/cache@v3
+      - name: Restore npm cache
+        uses: actions/cache@v3
         with:
           path: node_modules
-          key: node-modules-cache
+          key: npm-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-cache-${{ runner.os }}-
       - name: build
         run: npm run build
 

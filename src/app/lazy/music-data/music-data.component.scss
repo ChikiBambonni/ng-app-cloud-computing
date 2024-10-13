@@ -16,10 +16,20 @@ app-music-data {
       }
     }
 
-    p-table,
-    p-table .p-datatable,
-    p-table .p-datatable .p-datatable-wrapper {
+    .p-table,
+    .p-table p-table,
+    .p-table p-table .p-datatable,
+    .p-table p-table .p-datatable .p-datatable-wrapper {
       @apply tw-flex tw-flex-col tw-flex-1 tw-min-h-0 tw-min-w-0;
+    }
+
+    .p-table-date {
+      @apply tw-p-4;
+
+      &-title {
+        font-size: 16px;
+        font-weight: 600;
+      }
     }
   }
 }

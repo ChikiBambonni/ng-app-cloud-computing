@@ -24,7 +24,7 @@ import {
   MusicDataRepository,
 } from './music-data.repository';
 import { MusicDataHttpService } from './music-data-http.service';
-import { MusicItem } from './music-data.interfaces';
+import { MusicData, MusicItem } from './music-data.interfaces';
 
 @Component({
   selector: 'app-music-data',
@@ -54,7 +54,7 @@ import { MusicItem } from './music-data.interfaces';
 export class MusicDataComponent extends BaseDataComponent {
   readonly repository = inject(MusicDataRepository);
 
-  readonly musicItems = toSignal(this.fetchMusicData());
+  readonly musicData = toSignal(this.fetchMusicData());
   readonly searchValue = signal('');
 
   clear(table: Table): void {
@@ -62,7 +62,9 @@ export class MusicDataComponent extends BaseDataComponent {
     this.searchValue.set('');
   }
 
-  private fetchMusicData(): Observable<ComponentResponse<MusicItem[]>> {
+  date = '2024-10-13T08:41:56.832Z';
+
+  private fetchMusicData(): Observable<ComponentResponse<MusicData>> {
     return of(this.repository.getAll(false)).pipe(
       tap(() => {
         this.isLoading.set(true);

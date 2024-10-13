@@ -4,3 +4,8 @@ export interface MusicItem {
   id: string;
   releaseDate: string;
 }
+
+export interface MusicData {
+  data: MusicItem[];
+  date: string;
+}

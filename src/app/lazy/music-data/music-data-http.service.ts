@@ -7,22 +7,22 @@ import { environment } from '@environment';
 import { BaseHttpApi } from '@core/abstractions';
 import { ComponentResponse } from '@core/interfaces';
 
-import { MusicItem } from './music-data.interfaces';
+import { MusicData } from './music-data.interfaces';
 
 @Injectable()
 export class MusicDataHttpService extends BaseHttpApi {
   private readonly http = inject(HttpClient);
   private readonly musicDataUrl = `${environment.mapi}/items`;
 
-  getAll(): Observable<ComponentResponse<MusicItem[]>> {
+  getAll(): Observable<ComponentResponse<MusicData>> {
     return this.http
-      .get<MusicItem[]>(this.musicDataUrl, {
+      .get<MusicData>(this.musicDataUrl, {
         params: this.getRequestParams({}),
       })
       .pipe(
-        map((res: MusicItem[]) => this.getSuccessBody(res)),
+        map((res) => this.getSuccessBody(res)),
         catchError((error: HttpErrorResponse) =>
-          of(this.getErrorBody<MusicItem[]>(error))
+          of(this.getErrorBody<MusicData>(error))
         ),
         delay(1000)
       );

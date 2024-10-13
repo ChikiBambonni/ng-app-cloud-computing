@@ -24,7 +24,7 @@ import {
   MusicDataRepository,
 } from './music-data.repository';
 import { MusicDataHttpService } from './music-data-http.service';
-import { MusicData, MusicItem } from './music-data.interfaces';
+import { MusicData } from './music-data.interfaces';
 
 @Component({
   selector: 'app-music-data',
